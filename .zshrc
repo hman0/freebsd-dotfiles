@@ -15,4 +15,5 @@ export PATH="$HOME/.local/bin:$PATH"
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/scripts/oh-my-zsh-checker.sh
 source $ZSH/oh-my-zsh.sh
