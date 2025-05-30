@@ -6,6 +6,8 @@ plugins=(git zsh-syntax-highlighting)
 
 neofetch
 
+alias tldr=/compat/ubuntu/bin/tldr-hs
+
 export GTK_THEME="catppuccin-mocha-pink-standard+default"
 
 export XCURSOR_THEME="Bibata-Modern-Ice"
