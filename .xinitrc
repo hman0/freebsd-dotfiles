@@ -1,7 +1,7 @@
 # Startup applications
 dunst &
 dwmblocks &
-feh --bg-scale ~/Pictures/Wallpapers/sagecore.jpg &
+feh --bg-fill ~/Pictures/Wallpapers/sagecore.jpg &
 picom &
 
 # Display configuration
