@@ -117,7 +117,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_F11,    spawn,          {.v = brightnessdown } },
 	{ MODKEY,                       XK_F12,    spawn,          {.v = brightnessup } },
 	{ MODKEY|ShiftMask, XK_s, spawn, SHCMD("filename=~/Pictures/Screenshots/$(date +%Y-%m-%d-%H%M%S).png && maim -s -u | tee \"$filename\" | xclip -selection clipboard -t image/png && notify-send 'Screenshot Saved 📸' \"File: $(basename $filename)\"") },
-	{ MODKEY,                       XK_p,      spawn,          SHCMD("pgrep -f picom &> /dev/null && killall picom || picom &")},
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("pgrep -f picom &> /dev/null && killall picom || picom --vsync &")},
 
 };
 
