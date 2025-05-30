@@ -72,7 +72,7 @@ static const char *dmenucmd[] = {
 	NULL
 };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *browsercmd[] = {"librewolf", NULL };
+static const char *browsercmd[] = {"firefox", NULL };
 static const char *spotifycmd[] = {"/compat/ubuntu/usr/bin/spotify", NULL};
 static const char *brightnessup[] = { "brightnessctl", "set", "10%+", NULL };
 static const char *brightnessdown[] = { "brightnessctl", "set", "10%-", NULL };
