@@ -1,4 +1,4 @@
 ## simple dotfiles for freebsd dwm
 ![showcase](https://github.com/hman0/freebsd-dotfiles/blob/master/showcase/showcase.png)
 #### [firefox theme](https://color.firefox.com/?theme=XQAAAAIQBAAAAAAAAABBqYhm849SCicxcUapi38oKRicm6da8pGgBi-qqP44mS24mRnTKRdrN8XkgYA60XPRLv01ZJFExs4jDAGA5Wa4S4zf9VWyPMiSHnn88Y5OYY17ExaaoQNn9QuFziyUEOwie6GzAldVI-SdkV7WY2iDptv0BI4lpiqJ2c5JspFR7hhLKAR6D_vHVvETy7MrLyEPu1h1X7bzhNngcB10TY47R6uIfrp8OAbmJaaYZpVMM46t2OaRjY2R1w_1ULPIOO9cGCjwD0eJO78jUnJWNZT3HngqBIOy09r3spdBM8tulJAj33NwQdoSrr_CDcqnyvSrwjZBKmtp9CIOVagpbaYHI0nz73lb2_HDjZMISxGMuAgKj0oSkAnVIjJNx-eyd8Rgibg9sqVemSXDwaRbvwxmVSutSI9gszfgnFcH5N3KurJGS3VxScAPUy0VxvYbX6-5sEvyC6cF3nxIsJo0GMFodWOknFgOCSbW7a70DRYQrhtbibX-TaegMfYKu_CJfNuuDNgisYkojFrcrIBugjhGdfOzTOCzaP3P5vU5yxfH_gYckw)
-### [for DRM media](https://github.com/mrclksr/linux-browser-installer)
+#### [for DRM media](https://github.com/mrclksr/linux-browser-installer)
