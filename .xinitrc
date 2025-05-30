@@ -11,7 +11,7 @@ xset -dpms
 xset s noblank
 
 # Keyboard configuration
-xset r rate 200 20
+xset r rate 200 50
 setxkbmap gb
 
 exec dbus-launch --sh-syntax --exit-with-session dwm
