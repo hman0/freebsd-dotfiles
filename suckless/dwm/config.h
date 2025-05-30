@@ -1,22 +1,30 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=12" };
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=12";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#24382d";
+
+/* renamed and adjusted colors */
+static const char col_bg_dark[]     = "#222222";  // very dark gray, almost black
+static const char col_border_norm[] = "#444444";  // medium-dark gray
+static const char col_fg_light[]    = "#bbbbbb";  // light gray
+static const char col_fg_bright[]   = "#eeeeee";  // near white
+static const char col_accent[]      = "#24382d";  // dark desaturated green (muted forest)
+
+/* recommended distinct border color for selected windows */
+static const char col_border_sel[]  = "#5ba36d";  // medium muted green
+
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	/*               fg            bg            border         */
+	[SchemeNorm] = { col_fg_light, col_bg_dark, col_border_norm },
+	[SchemeSel]  = { col_fg_bright, col_accent, col_border_sel  },
 };
+
+static const unsigned int gappx     = 6;        /* gap pixel between windows */
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -57,7 +65,12 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = {
+	"dmenu_run", "-m", dmenumon, "-fn", dmenufont,
+	"-nb", col_bg_dark, "-nf", col_fg_light,
+	"-sb", col_accent,  "-sf", col_fg_bright,
+	NULL
+};
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[] = {"librewolf", NULL };
 static const char *spotifycmd[] = {"/compat/ubuntu/usr/bin/spotify", NULL};
