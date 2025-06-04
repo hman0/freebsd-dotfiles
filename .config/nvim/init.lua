@@ -103,8 +103,22 @@ require("lazy").setup({
       config = function()
         require("nvim-tree").setup()
       end
-    }, 
-  },
+    }, {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+      config = function()
+        require("nvim-treesitter").setup({
+          highlight = {
+            enable = true,
+          },
+        })
+      end
+    }, {
+      "neovim/nvim-lspconfig"
+    }
+  }, 
+	
+
 
   rocks = {
     hererocks = false,
@@ -167,6 +181,43 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   end,
 })
 
+local function my_on_attach(bufnr)
+  local api = require("nvim-tree.api")
+
+  local function opts(desc)
+    return {
+      desc = "nvim-tree: " .. desc,
+      buffer = bufnr,
+      noremap = true,
+      silent = true,
+      nowait = true
+    }
+  end
+
+  -- load default mappings
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- Open file with space bar
+  vim.keymap.set("n", "<Space>", api.node.open.edit, opts("Open File"))
+end
+
+vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n><CR>]], { noremap = true, silent = true })
+
+require("nvim-tree").setup({
+  on_attach = my_on_attach,
+})
+
+require('lspconfig').rust_analyzer.setup{
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = { allFeatures = true },
+            checkOnSave = {
+                command = "clippy"
+            }
+        }
+    }
+}
+
 vim.opt.laststatus = 0
 vim.opt.tabstop = 2    
 vim.opt.shiftwidth = 2    
@@ -177,4 +228,3 @@ vim.opt.ruler = false
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
-
