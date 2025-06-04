@@ -6,6 +6,13 @@ plugins=(git zsh-syntax-highlighting)
 
 neofetch
 
+nvim() {
+  echo -ne "\033]0;nvim\007"
+  command nvim "$@"
+  echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"
+}
+
+
 alias tldr=/compat/ubuntu/bin/tldr-hs
 
 export GTK_THEME="catppuccin-mocha-pink-standard+default"

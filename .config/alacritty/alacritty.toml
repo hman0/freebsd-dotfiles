@@ -1,6 +1,6 @@
 [window]
-padding = { x = 10, y = 10 }
-opacity = 0.75
+padding = { x = 10, y = 10}
+#opacity = 0.75 # moved to picom
 
 [font]
 size = 13.0
