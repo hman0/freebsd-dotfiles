@@ -1,5 +1,5 @@
 [window]
-padding = { x = 10, y = 10}
+#padding = { x = 10, y = 10} # nvim looks bad with padding :C
 #opacity = 0.75 # moved to picom
 
 [font]

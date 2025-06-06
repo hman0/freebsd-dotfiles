@@ -36,61 +36,66 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 	spec = {
 	  {
-	    "2giosangmitom/nightfall.nvim",
-	    lazy = false,
-	    priority = 1000,
-	    opts = {}, -- Add custom configuration here
-	    config = function(_, opts)
-	      require("nightfall").setup(opts)
-	      vim.cmd("colorscheme nord") -- Choose from: nightfall, deeper-night, maron, nord
-	    end,
+		  "EdenEast/nightfox.nvim",
+		  config = function()
+			  require("nightfox").setup({
+
+			  })
+			  vim.cmd("colorscheme terafox")
+		  end,
 	  },
 	  {
 	    "akinsho/bufferline.nvim",
 	    version = "*",
 	    dependencies = "nvim-tree/nvim-web-devicons",
-	    config = function()
-        local normal_bg = vim.api.nvim_get_hl_by_name("Normal", true).background
-	      require("bufferline").setup {
+      config = function()
+        -- Load colors from Nightfox (Terafox)
+        local terafox_colors = require("nightfox.palette").load("terafox")
+
+        -- Optionally pick a background from the palette (bg0 is usually right)
+        local bg = terafox_colors.bg0
+
+        require("bufferline").setup {
           options = {
-            numbers = "ordinal", -- shows buffer numbers
+            numbers = "ordinal",
             diagnostics = "nvim_lsp",
             show_buffer_close_icons = false,
             show_close_icon = false,
             always_show_bufferline = true,
           },
           highlights = {
-              fill = { bg = normal_bg },
-              background = { bg = normal_bg },
-              buffer_visible = { bg = normal_bg },
-              buffer_selected = { bg = normal_bg },
-              tab = { bg = normal_bg },
-              tab_selected = { bg = normal_bg },
-              tab_separator = { bg = normal_bg },
-              tab_separator_selected = { bg = normal_bg },
-              tab_close = { bg = normal_bg },
-              close_button = { bg = normal_bg },
-              close_button_visible = { bg = normal_bg },
-              close_button_selected = { bg = normal_bg },
-              separator = { fg = normal_bg, bg = normal_bg },
-              separator_selected = { fg = normal_bg, bg = normal_bg },
-              separator_visible = { fg = normal_bg, bg = normal_bg },
-              modified = { bg = normal_bg },
-              modified_visible = { bg = normal_bg },
-              modified_selected = { bg = normal_bg },
-              duplicate = { bg = normal_bg },
-              duplicate_selected = { bg = normal_bg },
-              duplicate_visible = { bg = normal_bg },
-              indicator_selected = { bg = normal_bg },
-              pick = { bg = normal_bg },
-              pick_selected = { bg = normal_bg },
-              pick_visible = { bg = normal_bg },
-              numbers = { bg = normal_bg },
-              numbers_visible = { bg = normal_bg },
-              numbers_selected = { bg = normal_bg },
+            fill = { bg = bg },
+            background = { bg = bg },
+            buffer_visible = { bg = bg },
+            buffer_selected = { bg = bg, bold = true },
+            tab = { bg = bg },
+            tab_selected = { bg = bg },
+            tab_separator = { bg = bg },
+            tab_separator_selected = { bg = bg },
+            tab_close = { bg = bg },
+            close_button = { bg = bg },
+            close_button_visible = { bg = bg },
+            close_button_selected = { bg = bg },
+            separator = { fg = bg, bg = bg },
+            separator_selected = { fg = bg, bg = bg },
+            separator_visible = { fg = bg, bg = bg },
+            modified = { bg = bg },
+            modified_visible = { bg = bg },
+            modified_selected = { bg = bg },
+            duplicate = { bg = bg },
+            duplicate_selected = { bg = bg },
+            duplicate_visible = { bg = bg },
+            indicator_selected = { bg = bg },
+            pick = { bg = bg },
+            pick_selected = { bg = bg },
+            pick_visible = { bg = bg },
+            numbers = { bg = bg },
+            numbers_visible = { bg = bg },
+            numbers_selected = { bg = bg },
           }
-	      }
-	    end
+        }
+      end
+
 	  }, {
       "windwp/nvim-autopairs",
       event = "InsertEnter",
@@ -115,6 +120,74 @@ require("lazy").setup({
       end
     }, {
       "neovim/nvim-lspconfig"
+    }, {
+      "nvim-telescope/telescope.nvim", tag = "0.1.8",
+      dependencies = { {"nvim-lua/plenary.nvim"} }
+    }, {
+      "nvimdev/dashboard-nvim",
+      event = "VimEnter",
+      config = function()
+        require("dashboard").setup {
+          theme = 'hyper',
+          config = {
+            week_header = {
+             enable = true,
+            },
+            shortcut = {
+              { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+              {
+                icon = ' ',
+                icon_hl = '@variable',
+                desc = 'Files',
+                group = 'Label',
+                action = function()
+                  require('telescope.builtin').find_files({ hidden = true })
+                end,
+                key = 'f',
+              },
+            },
+          },
+        }
+      end,
+      dependencies = { {"nvim-tree/nvim-web-devicons"} }
+    }, {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
+    },
+    config = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<Tab>"]     = cmp.mapping.select_next_item(),
+          ["<S-Tab>"]   = cmp.mapping.select_prev_item(),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<CR>"]      = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+        }, {
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+    end,
     }
   }, 
 	
