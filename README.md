@@ -1,9 +1,17 @@
 # BSPWM config for FreeBSD
 ![showcase3440x1440](https://github.com/hman0/freebsd-dotfiles/blob/master/assets/showcase.png)
 
-List of packages available in `./pkglist.txt`
+## Instructions
 
-Firefox theme available at `./.themes/hmocha.xpi`
+- Move or symlink `.config/` `.local/` `.themes/` `Pictures/` `Scripts/` `.xinitrc` `.zshrc` to `~/`
+
+- Install zplug (zsh plugin manager) from: https://github.com/zplug/zplug
+
+- Full list of the packages installed on my system, available at ./pkglist.txt.
+
+- Firefox theme available at `./.themes/hmocha.xpi`
+
+- Install script coming soon
 
 # hmocha Colour Scheme
 
