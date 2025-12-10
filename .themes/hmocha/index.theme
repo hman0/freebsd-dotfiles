@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=hmocha
+Comment=Coffee-themed warm color scheme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=hmocha
+MetacityTheme=hmocha
+IconTheme=Papirus-Dark
+CursorTheme=Adwaita
+ButtonLayout=close,minimize,maximize:menu
