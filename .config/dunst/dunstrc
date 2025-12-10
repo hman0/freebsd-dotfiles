@@ -1,0 +1,15 @@
+[global]
+offset = (25, 50)
+font = JetBrainsMono Nerd Font 12
+frame_color = "#d4685a"
+separator_color= frame
+highlight = "#7a8c99"
+[urgency_low]
+background = "#1a1210"
+foreground = "#e8d5c4"
+[urgency_normal]
+background = "#1a1210"
+foreground = "#e8d5c4"
+[urgency_critical]
+background = "#1a1210"
+foreground = "#e8d5c4"

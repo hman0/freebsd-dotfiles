@@ -1,0 +1,89 @@
+(defwidget bar []
+  (centerbox :orientation "h"
+    (workspaces)
+    (music)
+    (sidestuff)))
+
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    (systray :class "systray"
+             :orientation "h"
+             :space-evenly true
+             :icon-size 20
+             :spacing 10)
+    (metric :label " "
+            :value volume
+            :onchange "pamixer --set-volume {}")
+    (metric :label " "
+            :value {EWW_RAM.used_mem_perc}
+            :onchange "")
+    (metric :label "󰋊 "
+            :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+            :onchange "")
+    time))
+
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 0
+    (button :onclick "bspc desktop --focus 1" :class "${current_workspace == 1 ? 'active' : ''}" 1)
+    (button :onclick "bspc desktop --focus 2" :class "${current_workspace == 2 ? 'active' : ''}" 2)
+    (button :onclick "bspc desktop --focus 3" :class "${current_workspace == 3 ? 'active' : ''}" 3)
+    (button :onclick "bspc desktop --focus 4" :class "${current_workspace == 4 ? 'active' : ''}" 4)
+    (button :onclick "bspc desktop --focus 5" :class "${current_workspace == 5 ? 'active' : ''}" 5)
+    (button :onclick "bspc desktop --focus 6" :class "${current_workspace == 6 ? 'active' : ''}" 6)
+    (button :onclick "bspc desktop --focus 7" :class "${current_workspace == 7 ? 'active' : ''}" 7)
+    (button :onclick "bspc desktop --focus 8" :class "${current_workspace == 8 ? 'active' : ''}" 8)
+    (button :onclick "bspc desktop --focus 9" :class "${current_workspace == 9 ? 'active' : ''}" 9)))
+
+(deflisten current_workspace :initial "1"
+  "bspc subscribe desktop_focus | while read -r event; do bspc query -D -d focused --names; done")
+
+(defwidget music []
+  (box :class "music"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    {music != "" ? "${music}" : ""}))
+
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+
+(defpoll volume :interval "1s"
+  "scripts/getvol")
+
+(defpoll time :interval "10s"
+  "scripts/getdate")
+
+(defpoll battery :interval "60s"
+  "scripts/battery")
+
+(defpoll brightness :interval "1s"
+  "scripts/brightness")
+
+(defwindow bar0
+  :wm-ignore true
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "10px"
+                      :anchor "top center")
+  :reserve (struts :side "top" :distance "4%")
+  :exclusive true
+  (bar))

@@ -1,0 +1,37 @@
+#!/bin/sh 
+
+argument="$1"
+
+filename="$HOME/Pictures/Screenshots/$(date +%Y-%m-%d-%H%M%S).png"
+
+mkdir -p "$HOME/Pictures/Screenshots"
+mkdir -p /tmp/screenshots
+
+case "$argument" in 
+  selection)
+    maim -u -o /tmp/screenshots/fullscreen.png
+    feh -F -Z /tmp/screenshots/fullscreen.png &
+    FEH_PID=$!
+    sleep 0.1
+    maim -s -u -o | tee "$filename" | xclip -selection clipboard -t image/png
+    kill $FEH_PID
+    ;;
+  screen)
+    maim -u -o | tee "$filename" | xclip -selection clipboard -t image/png
+    ;;
+  window)
+    maim -u -o -i $(xdotool getactivewindow) | tee "$filename" | xclip -selection clipboard -t image/png
+    ;;
+  *)
+    echo "Usage: $0 {selection|screen|window}"
+    exit 1
+    ;;
+esac
+
+
+if [ ! -s "$filename" ]; then
+  rm "$filename"
+  exit 1
+fi
+
+notify-send 'Screenshot Saved' "File: $(basename "$filename")"

@@ -1,0 +1,68 @@
+* {
+  all: unset;
+  font-family: JetBrainsMono Nerd Font;
+}
+
+.bar0, .bar1 {
+  background-color: #1a1210;
+  color: #e8d5c4;
+  padding: 5px;
+  border-bottom: 2px;
+  border-style: solid;
+  border-color: #4a3933;
+}
+
+.sysinfo {
+  background-color: #1a1210;
+  color: #e8d5c4;
+  border: 5px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #d4685a;
+}
+
+.systray {
+  padding-right: 10px;
+}
+
+.sidestuff slider {
+  all: unset;
+  color: #7a9a8e;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #d4685a;
+  color: #2d1f1a;
+  border-radius: 10px;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: #4a3933;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.label-ram {
+  font-size: large;
+}
+
+.workspaces {
+  margin-left: 10px;
+}
+
+.workspaces button:hover {
+  color: #e8836f;
+}
+
+.workspaces button.active {
+  background-color: #d4685a;
+  color: #1a1210;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+
