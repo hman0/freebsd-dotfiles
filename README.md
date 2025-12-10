@@ -7,7 +7,7 @@
 
 - Install zplug (zsh plugin manager) from: https://github.com/zplug/zplug
 
-- Full list of the packages installed on my system, available at ./pkglist.txt.
+- Full list of the packages installed on my system, available at `./pkglist.txt.`
 
 - Firefox theme available at `./.themes/hmocha.xpi`
 
