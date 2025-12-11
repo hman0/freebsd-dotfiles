@@ -46,6 +46,7 @@ setopt correct
 fastfetch
 
 export TERM=xterm-256color
+export EDITOR=nvim
 
 export XCURSOR_THEME="Bibata-Modern-Ice"
 export XCURSOR_SIZE=24
