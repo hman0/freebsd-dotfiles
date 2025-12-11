@@ -26,6 +26,10 @@ Print
 super + ctrl + s 
   ~/Scripts/screenshot window
 
+# Lock screen
+super + alt + l
+  slock
+
 # make sxhkd reload its configuration files:
 super + shift + r
 	pkill sxhkd; sxhkd &; bspc wm --restart
