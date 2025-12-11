@@ -1,8 +1,8 @@
 # ⚠️ This Repository is a Mirror
 
-**This is a read-only mirror.** The primary repository has moved to Codeberg.
+**This is a read-only mirror.** The repository has moved to Codeberg.
 
-**Primary Repository:** https://codeberg.org/hman/freebsd-dotfiles
+**Repository:** https://codeberg.org/hman/freebsd-dotfiles
 
 # BSPWM config for FreeBSD
 ![showcase3440x1440](https://github.com/hman0/freebsd-dotfiles/blob/master/assets/showcase.png)
