@@ -5,7 +5,7 @@
 **Repository:** https://codeberg.org/hman/freebsd-dotfiles
 
 # BSPWM config for FreeBSD
-![showcase3440x1440](https://github.com/hman0/freebsd-dotfiles/blob/github-mirror/assets/showcase.png)
+![showcase3440x1440](https://github.com/hman0/freebsd-dotfiles/blob/github-mirror/assets/showcase.png?raw=true)
 
 ## Instructions
 
