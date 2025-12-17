@@ -28,4 +28,7 @@ unclutter -idle 1 &
 # load wallpaper
 feh --bg-fill ~/Pictures/Wallpapers/brown-chalet.jpg &
 
+# load syncthing
+syncthing --no-browser &
+
 exec bspwm
