@@ -1,3 +1,6 @@
+# Ensure XDG_SESSION_TYPE is correct
+XDG_SESSION_TYPE=x11
+
 # theming configuration
 export XCURSOR_THEME="Bibata-Modern-Ice"
 export XCURSOR_SIZE=24
@@ -15,6 +18,7 @@ setxkbmap gb &
 
 # monitor configuration
 xrandr --output DP-0 --mode 3440x1440 --rate 165
+xrandr --output DP-2 --off
 
 # notification daemon
 dunst &
@@ -28,7 +32,10 @@ unclutter -idle 1 &
 # load wallpaper
 feh --bg-fill ~/Pictures/Wallpapers/brown-chalet.jpg &
 
-# load syncthing
-syncthing --no-browser &
+# Audio server
+gentoo-pipewire-launcher &
 
-exec bspwm
+# Syncthing
+syncthing --no-browser & 
+
+exec dbus-run-session bspwm
