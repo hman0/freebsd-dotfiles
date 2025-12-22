@@ -42,7 +42,7 @@ show_menu() {
     fi
   done
   
-  printf '%s\n' "${menu_items[@]}" | rofi -case-smart -dmenu -p "Bookmarks"
+  printf '%s\n' "${menu_items[@]}" | rofi -i -dmenu -p "Bookmarks"
 }
 open_url() {
   local url="$1"
