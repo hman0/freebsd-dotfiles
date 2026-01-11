@@ -14,7 +14,7 @@ super + w
 super + d
 	rofi -show drun
 
-super + x 
+super + x
   ~/Scripts/rofi-bookmarks
 
 # screenshot selection
@@ -32,6 +32,10 @@ super + ctrl + s
 # Lock screen
 super + alt + l
   slock
+
+# Toggle picom on and off
+super + shift + p
+  ~/Scripts/picom-toggle
 
 # make sxhkd reload its configuration files:
 super + shift + r
@@ -158,3 +162,4 @@ super + shift + minus
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+

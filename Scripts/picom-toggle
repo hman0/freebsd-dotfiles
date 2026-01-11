@@ -1,0 +1,16 @@
+#!/bin/sh 
+
+# name: picom-toggle
+# author: hman
+# description: Toggle picom on and off, to be ran from a keybind
+# requirements: picom libnotify
+# usage:  ./picom-toggle
+
+if pgrep -x picom > /dev/null; then
+  pkill picom &
+  notify-send "Picom killed!"
+else
+  picom &
+  notify-send "Picom started!"
+fi
+
