@@ -23,7 +23,11 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-bindkey '^E' autosuggest-accept
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+
+bindkey '^X' autosuggest-accept
+
 
 setopt AUTO_CD  
 setopt NOCLOBBER
