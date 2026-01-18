@@ -70,3 +70,5 @@ export XCURSOR_SIZE=24
 
 eval "$(zoxide init zsh)"
 
+export PATH=$PATH:~/Scripts
+
