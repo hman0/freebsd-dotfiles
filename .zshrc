@@ -56,9 +56,6 @@ precmd() {
   print -Pn "\e]0;%~\a"
 }
 
-# Allow auto-correction
-setopt correct
-
 # Login message
 fastfetch
 
