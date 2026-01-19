@@ -125,11 +125,14 @@
       "type": "locale",
       "key": " Locale",
       "keyColor": "red"
+    },    
+    {
+      "type": "separator",
+      "string": "─"
     },
     {
       "type": "colors",
-      "paddingLeft": 2,
-      "symbol": "circle"
+      "symbol": "diamond"
     }
   ]
 }
