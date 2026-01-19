@@ -23,6 +23,12 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+
+bindkey '^X' autosuggest-accept
+
+
 setopt AUTO_CD  
 setopt NOCLOBBER
 
@@ -31,6 +37,7 @@ setopt INC_APPEND_HISTORY
 
 alias ll="ls -lA" 
 alias ff="fastfetch"
+alias cd="z"
 
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
@@ -49,9 +56,6 @@ precmd() {
   print -Pn "\e]0;%~\a"
 }
 
-# Allow auto-correction
-setopt correct
-
 # Login message
 fastfetch
 
@@ -60,3 +64,8 @@ export EDITOR=nvim
 
 export XCURSOR_THEME="Bibata-Modern-Ice"
 export XCURSOR_SIZE=24
+
+eval "$(zoxide init zsh)"
+
+export PATH=$PATH:~/Scripts
+
