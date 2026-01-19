@@ -1,25 +1,60 @@
 #!/bin/sh 
 
+# name: screenshot
+# author: hman
+# description: Take a screenshot of a selection, full screen, or specific window
+# limitations: 'Screen' screenshot doesn't handle multiple monitors, so it will take one big screenshot of all monitors (probably)
+# requiremnts: xorg-server maim xclip xdotool libnotify
+# usage:  ./screenshot selection
+#         ./screenshot screen
+#         ./screenshot window
+
 argument="$1"
-
 filename="$HOME/Pictures/Screenshots/$(date +%Y-%m-%d-%H%M%S).png"
-
 mkdir -p "$HOME/Pictures/Screenshots"
 mkdir -p /tmp/screenshots
 
 case "$argument" in 
   selection)
+    # Stop picom because it was capturing the screenshot selector in the screenshot
+    killall -STOP picom
     maim -u -o /tmp/screenshots/fullscreen.png
     feh -F -Z /tmp/screenshots/fullscreen.png &
     FEH_PID=$!
     sleep 0.1
-    maim -s -u -o | tee "$filename" | xclip -selection clipboard -t image/png
+    
+    # Screenshot command
+    maim -s -u -o "$filename"
+
+    
+    # Ensure file is written before closing feh
+    i=0
+    while [ ! -f "$filename" ] || [ ! -s "$filename" ] ; do
+      echo $i
+      if [ $i -gt 5 ] ; then # If user cancels selection then perform a cleanup and exit
+        kill $FEH_PID
+        killall -CONT picom
+        exit 0
+      fi
+      i=$((i + 1))
+      sleep 0.05
+    done
+    
+    # Close feh
     kill $FEH_PID
+    wait $FEH_PID 2>/dev/null
+
+    killall -CONT picom
+    
+    # Copy to clipboard
+    xclip -selection clipboard -t image/png < "$filename"
     ;;
   screen)
+    # One liner to take a screenshot of the entire screen
     maim -u -o | tee "$filename" | xclip -selection clipboard -t image/png
     ;;
   window)
+    # Use xdotool to screenshot the currently focused window
     maim -u -o -i $(xdotool getactivewindow) | tee "$filename" | xclip -selection clipboard -t image/png
     ;;
   *)
@@ -28,10 +63,10 @@ case "$argument" in
     ;;
 esac
 
-
 if [ ! -s "$filename" ]; then
   rm "$filename"
   exit 1
 fi
 
 notify-send 'Screenshot Saved' "File: $(basename "$filename")"
+
