@@ -4,6 +4,7 @@ source ~/.zplug/init.zsh
 # Plugin setup
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
+zplug "MichaelAquilina/zsh-you-should-use"
 
 zplug load 
 
